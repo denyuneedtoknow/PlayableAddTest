@@ -6,17 +6,22 @@ export default class HelloWorldScene extends Phaser.Scene {
     }
     preload() {
 
-        this.load.image('sky', 'assets/sky.png')
+        this.load.image('room', 'assets/room.webp')
+        this.load.image('girl_surprise', 'assets/girl_surprise.webp')
+        this.load.image('overlay', 'assets/overlay.webp')
 
     }
 
     create() {
-        this.add.image(400, 300, 'sky')
-        this.add.text(200, 200, 'Click to play', { fontFamily: 'Georgia, "Goudy Bookletter 1911", Times, serif' })
-        this.input.on('pointerup', () => {
-            this.scene.start('gameScene')
-        });
+        const room = this.add.image(0, 0, 'room');
+        const overlay = this.add.image(0, 0, 'overlay');
+        const girl = this.add.image(0, 0, 'girl_surprise');
+        //  Center the picture in the game
+        Phaser.Display.Align.In.Center(room, this.add.zone(300, 450, 600, 900));
+        Phaser.Display.Align.In.Center(overlay, this.add.zone(300, 450, 600, 900));
 
+        //  Center the sprite to the picture
+        Phaser.Display.Align.In.Center(girl, room);
 
     }
 }
