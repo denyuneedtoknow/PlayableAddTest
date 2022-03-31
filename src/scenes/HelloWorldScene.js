@@ -23,6 +23,7 @@ export default class HelloWorldScene extends Phaser.Scene {
 
         room.on('setdata', () => {
             console.log(Object.values(room.data.list)[0]);
+
         })
         room.data.set('gameStage', "guy_intro")
 
