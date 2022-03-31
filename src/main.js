@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
+// import Intro from './scenes/Intro'
+import GameScene from './scenes/GameScene'
 
-import HelloWorldScene from './scenes/HelloWorldScene'
 
 const config = {
 	type: Phaser.AUTO,
@@ -12,7 +13,8 @@ const config = {
 			gravity: { y: 300 }
 		}
 	},
-	scene: [HelloWorldScene,]
+	// scene: [Intro, GameScene]
+	scene: [GameScene]
 }
 
 export default new Phaser.Game(config)
