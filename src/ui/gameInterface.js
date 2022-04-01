@@ -19,14 +19,14 @@ export default class gameInterface extends Phaser.Scene {
 
 
 
-		leftButton.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-			const choice = leftButton.choice.texture.key
-			leftButton.destroy()
-			rightButton.destroy()
-			this.choice.clothing = choice
-			console.log(choice)
+		// leftButton.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
+		// 	const choice = leftButton.choice.texture.key
+		// 	leftButton.destroy()
+		// 	rightButton.destroy()
+		// 	this.choice.clothing = choice
+		// 	console.log(choice)
 
-		})
+		// })
 		// rightButton.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
 		// 	const choice = rightButton.choice.texture.key
 		// 	rightButton.destroy()
@@ -34,6 +34,7 @@ export default class gameInterface extends Phaser.Scene {
 		// 	this.choice.clothing = choice
 		// 	console.log(choice);
 		// })
+		leftButton.setInteractive()
 		rightButton.setInteractive()
 		this.input.setTopOnly(true).on('gameobjectdown', this.choiceClick.bind(this))
 	}

@@ -10,6 +10,7 @@ export default class ClothingScene extends Phaser.Scene {
         this.choice = {
             clothing: "none", handbag: "", makeup: "", background: ""
         }
+
     }
     preload() {
         this.load.image('room', 'assets/room.webp')
@@ -22,17 +23,21 @@ export default class ClothingScene extends Phaser.Scene {
 
     }
     create() {
-        const room = this.add.image(0, 0, 'room').setOrigin(0, 0);
-        Phaser.Display.Align.In.Center(room, this.add.zone(300, 450, 600, 900));
+        this.room = this.add.image(0, 0, 'room').setOrigin(0, 0);
+        Phaser.Display.Align.In.Center(this.room, this.add.zone(300, 450, 600, 900));
         this.girl_start = this.add.image(0, 0, 'girl_start');
-        Phaser.Display.Align.In.Center(this.girl_start, room);
+        Phaser.Display.Align.In.Center(this.girl_start, this.room);
 
-        // this.label = this.add.text(10, 10, `${this.choice.clothing}`)
-        this.choice.setDataEnabled()
+
+        this.room.setDataEnabled()
+        this.label = this.add.text(10, 10, `${this.room.data.get('clothing')}`)
+        console.log(this.room.data.get('clothing'));
+
         this.scene.run('ui-scene')
+
         eventsCenter.on('update-cloth', this.updateCloth, this)
 
-        // this.scene.run('ui-scene')
+
     }
 
     createButton(option, align) {
@@ -44,7 +49,10 @@ export default class ClothingScene extends Phaser.Scene {
     updateCloth(clothing) {
         // console.log(clothing);
         this.choice.clothing = clothing
-        this.label = this.add.text(10, 10, `${this.choice.clothing}`)
+        // this.label = this.add.text(10, 10, `${this.choice.clothing}`)
+        this.label.setText(`${this.choice.clothing}`)
+        this.room.data.set('clothing', `${this.choice.clothing}`)
+
 
     }
 }
