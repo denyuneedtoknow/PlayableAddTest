@@ -1,6 +1,8 @@
 import Phaser from 'phaser'
 // import Intro from './scenes/Intro'
-import GameScene from './scenes/GameScene'
+import ClothingScene from './scenes/ClothingScene'
+import HandbagScene from './scenes/HandbagScene'
+import gameInterface from './ui/gameInterface'
 
 
 const config = {
@@ -14,7 +16,7 @@ const config = {
 		}
 	},
 	// scene: [Intro, GameScene]
-	scene: [GameScene]
+	scene: [ClothingScene, gameInterface, HandbagScene]
 }
 
 export default new Phaser.Game(config)
