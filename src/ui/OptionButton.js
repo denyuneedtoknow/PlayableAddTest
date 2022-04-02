@@ -9,9 +9,6 @@ export default class OptionButon extends Phaser.GameObjects.Container {
         this.add(this.image)
         this.add(this.choice)
         this.setSize(this.image.height, this.image.width)
-        // this.setInteractive().on(Phaser.Input.Events.GAMEOBJECT_POINTER_DOWN, () => {
-
-        // })
     }
 
 }

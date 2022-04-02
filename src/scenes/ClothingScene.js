@@ -3,6 +3,11 @@ import OptionButon from '../ui/OptionButton'
 import eventsCenter from '../ui/eventEmitter'
 
 export default class ClothingScene extends Phaser.Scene {
+
+
+    choice = {
+        clothing: "none", handbag: "", makeup: "", background: ""
+    }
     constructor() {
         super("clothingScene")
         this.btnLeft = 'BottomLeft'
@@ -28,12 +33,42 @@ export default class ClothingScene extends Phaser.Scene {
         this.girl_start = this.add.image(0, 0, 'girl_start');
         Phaser.Display.Align.In.Center(this.girl_start, this.room);
 
-
+        const text = this.add.text(400, 150, '', { font: '20px Courier', color: '#000' });
         this.room.setDataEnabled()
+        this.room.data.set('clothing', 'none');
+        this.room.data.set('handbag', 'none');
+        this.room.data.set('makeup', 'none');
+        this.room.data.set('background', 'none');
+
+        text.setText([
+            'clothing: ' + this.room.data.get('clothing'),
+            'handbag: ' + this.room.data.get('handbag'),
+            'makeup: ' + this.room.data.get('makeup'),
+            'background: ' + this.room.data.get('background')
+        ]);
+
+        this.room.on('changedata', function (gameObject, value) {
+
+            // text.setText([
+            //     'clothing: ' + this.room.data.get('clothing'),
+            //     'handbag: ' + this.room.data.get('handbag'),
+            //     'handbag: ' + this.room.data.get('handbag'),
+            //     'background: ' + this.room.data.get('background')])
+
+            console.log('onchange list', gameObject.data.list);
+            console.log('onchange value', value);
+            // console.log(this.room.data.get('clothing'));
+        });
+
+
+
+
+
         this.label = this.add.text(10, 10, `${this.room.data.get('clothing')}`)
         console.log(this.room.data.get('clothing'));
 
         this.scene.run('ui-scene')
+        // this.scene.run('gem')
 
         eventsCenter.on('update-cloth', this.updateCloth, this)
 
