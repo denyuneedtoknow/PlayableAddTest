@@ -14,6 +14,7 @@ export default class Preloader extends Phaser.Scene {
 
         this.load.image('guy', 'assets/guy.webp')
         this.load.image('Paul_text', 'assets/Paul_text.webp')
+        this.load.image('Paul_text2', 'assets/Paul_text2.webp')
         this.load.image('Lexi_text', 'assets/Lexi_text.webp')
 
         this.load.image('girl_start', 'assets/girl_start.webp')
@@ -28,8 +29,8 @@ export default class Preloader extends Phaser.Scene {
 
         this.load.image('girl_dress_blue_hb_shades', 'assets/girl_dress_blue_hb_shades.webp')
         this.load.image('girl_dress_yellow_hb_shades', 'assets/girl_dress_yellow_hb_shades.webp')
-        this.load.image('girl_dress_blue_hb_necklace', 'assets/girl_dress_blue_hb_necklace.webp')
-        this.load.image('girl_dress_yellow_hb_necklace', 'assets/girl_dress_yellow_hb_necklace.webp')
+        this.load.image('girl_dress_blue_hb_chocker', 'assets/girl_dress_blue_hb_chocker.webp')
+        this.load.image('girl_dress_yellow_hb_chocker', 'assets/girl_dress_yellow_hb_chocker.webp')
         this.load.image('girl_shorts_blue_hb_shades', 'assets/girl_shorts_blue_hb_shades.webp')
         this.load.image('girl_shorts_yellow_hb_shades', 'assets/girl_shorts_yellow_hb_shades.webp')
         this.load.image('girl_shorts_blue_hb_necklace', 'assets/girl_shorts_blue_hb_necklace.webp')
@@ -46,7 +47,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('yellow_hb', 'assets/yellow_hb.webp')
         this.load.image('necklace', 'assets/necklace.webp')
         this.load.image('shades', 'assets/shades.webp')
-        this.load.image('necklace2', 'assets/chocker.webp')
+        this.load.image('chocker', 'assets/chocker.webp')
 
     }
     create() {
