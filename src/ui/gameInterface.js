@@ -2,56 +2,83 @@ import Phaser from 'phaser'
 import OptionButon from '../ui/OptionButton'
 import eventsCenter from '../ui/eventEmitter'
 
+const CLOTHING_STAGE = 'clothing'
+
 export default class gameInterface extends Phaser.Scene {
 	constructor() {
 		super('ui-scene')
 		this.btnLeft = 'BottomLeft'
 		this.btnRight = 'BottomRight'
-		this.stage = ['clothing', 'handbag', 'makeup', 'background']
-		this.choice = [["dress", "shorts"], ["yellow_hb", "blue_hb"], ["neclace", "shades"], ["beach", "terrace"]]
+		this.stages = new Map([
+			[CLOTHING_STAGE, new Map([
+				['leftButton', 'dress'],
+				['rightButton', 'shorts'],
+				['nextStage', 'handbag']
+			])],
+			['handbag', new Map([
+				['leftButton', 'yellow_hb'],
+				['rightButton', 'blue_hb'],
+				['nextStage', 'makeup']
+			])],
+			['makeup', new Map([
+				['leftButton', 'necklace'],
+				['rightButton', 'shades'],
+				['nextStage', 'background']
+			])],
+			['background', new Map([
+				['leftButton', 'beach'],
+				['rightButton', 'terrace'],
+				['nextStage', '']
+			])],
+		])
+		this.currentStage = CLOTHING_STAGE
+		this.leftButton = null
+		this.rightButton = null
 	}
 
 	create() {
-		this.cycling()
-		// const leftButton = this.createButton('dress', this.stage[0], this.btnLeft)
-		// const rightButton = this.createButton('shorts', this.stage[0], this.btnRight)
+		this.input.on('gameobjectdown', this.choiceClick)
+		this.createUI()
 
-		// leftButton.setInteractive()
-		// rightButton.setInteractive()
-		// this.input.setTopOnly(true).on('gameobjectdown', this.choiceClick.bind(this))
+	}
+	update() {
+		if (this.stages.get(this.currentStage).get('nextStage') === '') {
+			this.scene.stop('ui-scene')
+		}
+	}
+
+	createUI = (stage = this.currentStage) => {
+		const stageKey = stage
+		const stageValue = this.stages.get(stageKey)
+		this.leftButton = this.createButton(stageValue.get('leftButton'), stageKey, this.btnLeft)
+		this.rightButton = this.createButton(stageValue.get('rightButton'), stageKey, this.btnRight)
+		this.leftButton.setInteractive()
+		this.rightButton.setInteractive()
 	}
 
 	createButton(option, stage, align) {
 		const btn = new OptionButon(this, 0, 0, 'rectangle', option, stage)
 		this.add.existing(btn)
 		Phaser.Display.Align.In[align](btn, this.add.zone(300, 300, 600, 900))
-		// console.log(btn);
 		return btn
 	}
-	choiceClick(pointer, object) {
+	choiceClick = (pointer, object) => {
 
 		const choosedOption = {
 			stage: `${object.stage}`,
 			option: `${object.choice.texture.key}`
 		}
-		// console.log(choosedOption);
+
 		eventsCenter.emit('update-cloth', choosedOption)
 
-	}
-	cycling() {
-		for (let i = 0; i < this.stage.length; i++) {
-			console.log(this.stage[i])
-			for (let j = 0; j < this.choice[i].length; j++) {
-				console.log(this.choice[i][j]);
-				const leftButton = this.createButton(this.choice[i][0], this.stage[i], this.btnLeft)
-				const rightButton = this.createButton(this.choice[i][1], this.stage[i], this.btnRight)
-				leftButton.setInteractive()
-				rightButton.setInteractive()
-				this.input.setTopOnly(true).on('gameobjectdown', this.choiceClick.bind(this))
-				console.log(leftButton);
-				console.log(rightButton);
-			}
+		this.leftButton?.destroy()
+		this.rightButton?.destroy()
+
+		if (this.stages.get(object.stage).get('nextStage') !== '') {
+			const nextStage = this.stages.get(object.stage).get('nextStage')
+			this.createUI(nextStage)
 		}
 	}
+
 
 }
