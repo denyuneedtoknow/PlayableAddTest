@@ -36,7 +36,6 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('girl_shorts_blue_hb_necklace', 'assets/girl_shorts_blue_hb_necklace.webp')
         this.load.image('girl_shorts_yellow_hb_necklace', 'assets/girl_shorts_yellow_hb_necklace.webp')
 
-
         this.load.image('dress', 'assets/dress.webp')
         this.load.image('shorts', 'assets/shorts.webp')
         this.load.image('beach', 'assets/beach.webp')
@@ -58,10 +57,6 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('progress_bar_clothing', 'assets/progress_bar_2.webp')
         this.load.image('progress_bar_handbag', 'assets/progress_bar_3.webp')
         this.load.image('progress_bar_makeup', 'assets/progress_bar_4.webp')
-        // this.load.image('progress_bar_background', 'assets/progress_bar_4.webp')
-
-
-
 
     }
     create() {

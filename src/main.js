@@ -16,7 +16,6 @@ const config = {
 			gravity: { y: 0 }
 		}
 	},
-	// scene: [Intro, GameScene]
 	scene: [Preloader, Intro, ClothingScene, GameInterface]
 }
 
