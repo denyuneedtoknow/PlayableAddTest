@@ -3,7 +3,7 @@ import OptionButon from './OptionButton'
 import eventsCenter from './eventEmitter'
 import v from './variables'
 
-console.log(v.BACKGROUND_STAGE);
+
 export default class GameInterface extends Phaser.Scene {
 	constructor() {
 		super('ui-scene')
@@ -40,13 +40,30 @@ export default class GameInterface extends Phaser.Scene {
 	create() {
 		this.input.on('gameobjectdown', this.choiceClick)
 		this.createUI()
-		this.hand = this.add.image(300, 700, 'hand').setScale(1)
+		this.createHand()
+		this.createProgressBar()
 
 	}
 	update() {
+
 		if (this.stages.get(this.currentStage).get('nextStage') === '') {
 			this.scene.stop('ui-scene')
 		}
+	}
+	createHand = () => {
+		this.hand = this.physics.add.sprite(200, 700, 'hand')
+		this.tweens.add({
+			targets: this.hand,
+			x: 500,
+			duration: 1000,
+			ease: 'Sine.easeInOut',
+			loop: 3,
+			yoyo: true
+		});
+
+		this.time.delayedCall(4000, () => {
+			this.hand.destroy()
+		})
 	}
 
 	createUI = (stage = this.currentStage) => {
@@ -66,6 +83,13 @@ export default class GameInterface extends Phaser.Scene {
 		this.rightButton.setInteractive()
 
 	}
+	createProgressBar = () => {
+		this.progressBar = this.add.image(300, 40, `progress_bar_0`)
+	}
+	updateProgressBar = (stage) => {
+		this.progressBar = this.add.image(300, 40, `progress_bar_${stage}`)
+	}
+
 
 	createButton(option, stage, align) {
 
@@ -84,12 +108,14 @@ export default class GameInterface extends Phaser.Scene {
 			this.dressChoice = v.DRESS
 		}
 		eventsCenter.emit('update-cloth', choosedOption)
-
+		this.hand?.destroy()
 		this.leftButton?.destroy()
 		this.rightButton?.destroy()
+		this.progressBar.destroy()
 		if (this.stages.get(object.stage).get('nextStage') !== '') {
 			const nextStage = this.stages.get(object.stage).get('nextStage')
 			this.createUI(nextStage)
+			this.updateProgressBar(object.stage)
 		}
 	}
 

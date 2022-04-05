@@ -47,10 +47,11 @@ export default class ClothingScene extends Phaser.Scene {
             this.room = this.add.image(0, 0, `${key}_bg`).setOrigin(0, 0);
             Phaser.Display.Align.In.Center(this.room, this.add.zone(300, 450, 600, 900));
             this.room.setDataEnabled()
-            this.guy = this.add.image(360, 490, 'guy').setScale(0.9)
+            // this.guy = this.add.image(360, 490, 'guy').setScale(0.9)
+            this.appearGuy()
             this.girl = this.add.image(170, 480, `girl_${finalClothing}_${finalHandbag}_${finalMakeup}`)
-            this.Paul_text = this.add.image(300, 450, 'Paul_text2').setScale(0.6)
-            this.play_now_btn = this.add.image(300, 750, 'play_now_btn').setScale(1)
+            // this.Paul_text = this.add.image(300, 450, 'Paul_text2').setScale(0.6)
+            // this.play_now_btn = this.add.image(300, 750, 'play_now_btn').setScale(1)
 
         });
 
@@ -64,5 +65,23 @@ export default class ClothingScene extends Phaser.Scene {
 
         this.room.data.set(choosedOption.stage, choosedOption.option)
         this.stage = choosedOption.stage
+    }
+    appearGuy = () => {
+        this.guy = this.add.image(800, 490, 'guy').setScale(0.9)
+        this.tweens.add({
+            targets: this.guy,
+            x: 360,
+            duration: 1000,
+            ease: 'Sine.easeInOut',
+            // loop: 3,
+            // yoyo: true
+        });
+        this.time.delayedCall(1000, () => {
+            this.Paul_text = this.add.image(300, 450, 'Paul_text2').setScale(0.6)
+
+        })
+        this.time.delayedCall(1500, () => {
+            this.play_now_btn = this.add.image(300, 750, 'play_now_btn')
+        })
     }
 }

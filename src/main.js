@@ -1,5 +1,5 @@
 import Phaser from 'phaser'
-// import Intro from './scenes/Intro'
+import Intro from './scenes/Intro'
 import ClothingScene from './scenes/ClothingScene'
 import Preloader from './scenes/Preloader'
 import GameInterface from './ui/GameInterface'
@@ -13,11 +13,11 @@ const config = {
 	physics: {
 		default: 'arcade',
 		arcade: {
-			gravity: { y: 300 }
+			gravity: { y: 0 }
 		}
 	},
 	// scene: [Intro, GameScene]
-	scene: [Preloader, ClothingScene, GameInterface]
+	scene: [Preloader, Intro, ClothingScene, GameInterface]
 }
 
 export default new Phaser.Game(config)

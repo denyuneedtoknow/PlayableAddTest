@@ -7,7 +7,7 @@ export default class Preloader extends Phaser.Scene {
     }
 
     preload() {
-        this.load.image('overlay', 'assets/overlay.webp')
+
 
         this.load.image('room', 'assets/room.webp')
         this.load.image('girl_surprise', 'assets/girl_surprise.webp')
@@ -36,7 +36,7 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('girl_shorts_blue_hb_necklace', 'assets/girl_shorts_blue_hb_necklace.webp')
         this.load.image('girl_shorts_yellow_hb_necklace', 'assets/girl_shorts_yellow_hb_necklace.webp')
 
-        this.load.image('rectangle', 'assets/rectangle.webp')
+
         this.load.image('dress', 'assets/dress.webp')
         this.load.image('shorts', 'assets/shorts.webp')
         this.load.image('beach', 'assets/beach.webp')
@@ -48,11 +48,23 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('necklace', 'assets/necklace.webp')
         this.load.image('shades', 'assets/shades.webp')
         this.load.image('chocker', 'assets/chocker.webp')
+
+        this.load.image('overlay', 'assets/overlay.webp')
+        this.load.image('rectangle', 'assets/rectangle.webp')
         this.load.image('play_now_btn', 'assets/play_now_btn.webp')
         this.load.image('hand', 'assets/hand.webp')
 
+        this.load.image('progress_bar_0', 'assets/progress_bar_0.webp')
+        this.load.image('progress_bar_clothing', 'assets/progress_bar_2.webp')
+        this.load.image('progress_bar_handbag', 'assets/progress_bar_3.webp')
+        this.load.image('progress_bar_makeup', 'assets/progress_bar_4.webp')
+        // this.load.image('progress_bar_background', 'assets/progress_bar_4.webp')
+
+
+
+
     }
     create() {
-        this.scene.start('clothingScene')
+        this.scene.start('intro')
     }
 }
