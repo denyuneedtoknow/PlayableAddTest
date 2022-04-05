@@ -48,6 +48,8 @@ export default class Preloader extends Phaser.Scene {
         this.load.image('necklace', 'assets/necklace.webp')
         this.load.image('shades', 'assets/shades.webp')
         this.load.image('chocker', 'assets/chocker.webp')
+        this.load.image('play_now_btn', 'assets/play_now_btn.webp')
+        this.load.image('hand', 'assets/hand.webp')
 
     }
     create() {

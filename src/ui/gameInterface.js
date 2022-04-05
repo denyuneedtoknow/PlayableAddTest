@@ -40,6 +40,7 @@ export default class GameInterface extends Phaser.Scene {
 	create() {
 		this.input.on('gameobjectdown', this.choiceClick)
 		this.createUI()
+		this.hand = this.add.image(300, 700, 'hand').setScale(1)
 
 	}
 	update() {

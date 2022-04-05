@@ -3,7 +3,7 @@ import Phaser from 'phaser'
 import ClothingScene from './scenes/ClothingScene'
 import Preloader from './scenes/Preloader'
 import GameInterface from './ui/GameInterface'
-import Final from './scenes/Final'
+
 
 
 const config = {
@@ -17,7 +17,7 @@ const config = {
 		}
 	},
 	// scene: [Intro, GameScene]
-	scene: [Preloader, ClothingScene, GameInterface, Final]
+	scene: [Preloader, ClothingScene, GameInterface]
 }
 
 export default new Phaser.Game(config)
